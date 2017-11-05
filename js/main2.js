@@ -43,7 +43,7 @@ equals.addEventListener('click', function(){
 	currentNumberSpan.style.visibility = 'hidden';
 
 	if (numbers.length === 1){
-		runningTotal = numbers[0];
+		runningTotal = Number((numbers[0]).toFixed(2));
 		displayTotal.innerHTML = runningTotal;
 		displayTotal.style.display = 'block';
 		currentNumberSpan.innerHTML = runningTotal;
@@ -51,28 +51,28 @@ equals.addEventListener('click', function(){
 	} else {
 		switch (lastOperand){
 			case 'add':
-				runningTotal = numbers[0] + numbers[1];
+				runningTotal = Number((numbers[0] + numbers[1]).toFixed(2));
 				displayTotal.innerHTML =  '= ' + runningTotal;
 				displayTotal.style.display = 'block';
 				currentNumberSpan.innerHTML = runningTotal;
 				numbers = [];
 				break;
 			case 'subtract':
-				runningTotal = numbers[0] - numbers[1];
+				runningTotal = Number((numbers[0] - numbers[1]).toFixed(2));
 				displayTotal.innerHTML =  '= ' + runningTotal;
 				displayTotal.style.display = 'block';
 				currentNumberSpan.innerHTML = runningTotal;
 				numbers = [];
 				break;
 			case 'multiply':
-				runningTotal = numbers[0] * numbers[1];
+				runningTotal = Number((numbers[0] * numbers[1]).toFixed(2));
 				displayTotal.innerHTML =  '= ' + runningTotal;
 				displayTotal.style.display = 'block';
 				currentNumberSpan.innerHTML = runningTotal;
 				numbers = [];
 				break;
 			case 'divide':
-				runningTotal = numbers[0] / numbers[1];
+				runningTotal = Number((numbers[0] / numbers[1]).toFixed(2));
 				displayTotal.innerHTML =  '= ' + runningTotal;
 				displayTotal.style.display = 'block';
 				currentNumberSpan.innerHTML = runningTotal;
@@ -119,7 +119,7 @@ function doThisForEveryOperand(){
 			numbers.push(currentNumber);
 			currentNumberSpan.innerHTML = '';
 			operand.innerHTML = this.innerHTML;
-			
+
 			switchCases();
 			lastOperand = target.id;;
 		});
@@ -132,22 +132,22 @@ function switchCases(){
 	} else {
 		switch (lastOperand){
 			case 'add':
-				runningTotal = numbers[0] + numbers[1];
+				runningTotal = Number((numbers[0] + numbers[1]).toFixed(2));
 				numbers[0] = runningTotal;
 				numbers.pop();
 				break;
 			case 'subtract':
-				runningTotal = numbers[0] - numbers[1];
+				runningTotal = Number((numbers[0] - numbers[1]).toFixed(2));
 				numbers[0] = runningTotal;
 				numbers.pop();
 				break;
 			case 'multiply':
-				runningTotal = numbers[0] * numbers[1];
+				runningTotal = Number((numbers[0] * numbers[1]).toFixed(2));
 				numbers[0] = runningTotal;
 				numbers.pop();
 				break;
 			case 'divide':
-				runningTotal = numbers[0] / numbers[1];
+				runningTotal = Number((numbers[0] / numbers[1]).toFixed(2));
 				numbers[0] = runningTotal;
 				numbers.pop();
 				break;

@@ -14,7 +14,9 @@ body {
 	box-shadow: 3px 3px 1px #190770;
 	padding: 30px;
 	color: white;
-	width: 30%;
+	width: 100%;
+	margin-right: 10px;
+	margin-left: 10px;
 	background-color: #1c0880;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -71,6 +73,34 @@ h2 {
 .zero {
 	grid-column: 1 / 3;
 }
+
+/* ================== Media Queries ====================== */
+
+@media all and (min-width: 500px){
+	.calculator {
+		width: 70%;
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+@media all and (min-width: 700px){
+	.calculator {
+		width: 50%;
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+@media all and (min-width: 900px){
+	.calculator {
+		width: 30%;
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+
 
 
 
