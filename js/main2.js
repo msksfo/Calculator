@@ -67,6 +67,7 @@ powerOn.addEventListener('click', function(){
 });
 	
 equals.addEventListener('click', function(){
+	message.innerHTML = '';
 	operand.innerHTML = '';
 	currentNumber = Number(currentNumberSpan.innerHTML);
 	numbers.push(currentNumber);
@@ -149,6 +150,7 @@ function doThisForEveryOperand(){
 			numbers.push(currentNumber);
 			currentNumberSpan.innerHTML = '';
 			operand.innerHTML = this.innerHTML;
+			message.innerHTML = '';
 
 			switchCases();
 			lastOperand = target.id;;
