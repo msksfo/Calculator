@@ -1,0 +1,84 @@
+/* ================= General Styling ======================== */
+
+body {
+	margin: 0;
+	height: 100vh;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.calculator {
+	border-radius: 3px;
+	box-shadow: 3px 3px 1px #190770;
+	padding: 30px;
+	color: white;
+	width: 30%;
+	background-color: #1c0880;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(7, 60px);
+	grid-gap: 10px;
+}
+
+.border {
+	border: 1px solid white;
+	border-radius: 5px;
+}
+
+.flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #c9bffb;
+	color: #1c0880;
+	font-size: 1.3rem;
+
+	
+}
+
+.flex:hover {
+	cursor: pointer;
+	background-color: #fbeee6;
+}
+
+/* ================= Individual Button Styling and Placement =============*/
+h2 {
+	text-align: center;
+	grid-column: 1 / -1;
+	position: relative;
+	top: -1.3rem;
+}
+
+.display-total {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding-right: 2rem;
+	font-size: 1.8rem;
+	grid-column: 1 / -1;
+	background-color: #f1948a;
+	color: #1c0880;
+}
+
+.on-off {
+	grid-column: 1 / 3;
+	display: flex;
+	justify-content: space-around;
+}
+
+.zero {
+	grid-column: 1 / 3;
+}
+
+
+
+
+
+
+
+
+
+
+
