@@ -2,11 +2,13 @@
 
 var displayTotal = document.getElementById('display-total');
 var currentNumberSpan = document.getElementById('current-number');
-
+var h2 = document.getElementById('h2');
 var powerOn = document.getElementById('power-on');
 var powerOff = document.getElementById('power-off');
 var message = document.getElementById('power-message');
 var clear = document.getElementById('clear');
+
+var fadeInOut = document.querySelectorAll('.fade-in-out');
 
 var operand = document.getElementById('operand');
 var equals = document.getElementById('equals');
@@ -19,20 +21,48 @@ var lastOperand;
 /* ================== Event Handlers ============================= */
 
 clear.addEventListener('click', function(){
+	message.innerHTML = '';
 	reset();
 });
 
 powerOff.addEventListener('click', function(){
+	powerOff.style.color = '#f1948a';
+	powerOff.style.backgroundColor = '#fbeee6';
+	powerOn.style.color = '#1c0880';
+	powerOn.style.backgroundColor = '#c9bffb';
+	h2.style.opacity = .2;
+	h2.innerHTML = 'Calculator';
 	message.innerHTML = 'Goodbye';
+
+	for (let k = 0; k < fadeInOut.length; k++){
+		fadeInOut[k].style.color = 'rgba(28, 8, 128, 0)';
+	}
+
 	setTimeout(function(){
 		message.innerHTML = '';
 	}, 1000);
+
+	setTimeout(function(){
+		powerOff.style.color = '#1c0880';
+		powerOff.style.backgroundColor = '#c9bffb';
+	}, 2000);
 
 	reset();
 });
 
 powerOn.addEventListener('click', function(){
+	
+	for (let k = 0; k < fadeInOut.length; k++){
+		fadeInOut[k].style.color = 'rgba(28, 8, 128, 1)';
+	}
+
+	powerOn.style.color = '#f1948a';
+	powerOn.style.backgroundColor = '#fbeee6';
+	h2.style.opacity = 0;
+	h2.innerHTML = 'I Hate Math';
+	h2.style.opacity = 1;
 	message.innerHTML = 'Hello';
+	message.style.opacity = 1;
 	reset();
 });
 	

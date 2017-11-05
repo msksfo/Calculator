@@ -36,13 +36,31 @@ body {
 	background-color: #c9bffb;
 	color: #1c0880;
 	font-size: 1.3rem;
-
-	
 }
 
 .flex:hover {
 	cursor: pointer;
 	background-color: #fbeee6;
+}
+
+#power-on {
+	padding: 12px;
+	border-radius: 5px;
+}
+
+#power-off {
+	padding: 12px;
+	border-radius: 5px;
+}
+
+.calculatorPowerOn{
+	background-color: #1c0880;
+	color: white;
+}
+
+.fade-in-out {
+	color: rgba(28, 8, 128, 0);
+	transition: color 1s ease;
 }
 
 /* ================= Individual Button Styling and Placement =============*/
@@ -51,6 +69,8 @@ h2 {
 	grid-column: 1 / -1;
 	position: relative;
 	top: -1.3rem;
+	opacity: .2;
+	transition: opacity 2s ease;
 }
 
 .display-total {
