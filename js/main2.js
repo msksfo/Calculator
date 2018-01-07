@@ -4,6 +4,7 @@ var displayTotal = document.getElementById('display-total');
 var currentNumberSpan = document.getElementById('current-number');
 var h2 = document.getElementById('h2');
 var powerOn = document.getElementById('power-on');
+var powerCheck = false;
 var powerOff = document.getElementById('power-off');
 var message = document.getElementById('power-message');
 var clear = document.getElementById('clear');
@@ -26,6 +27,7 @@ clear.addEventListener('click', function(){
 });
 
 powerOff.addEventListener('click', function(){
+	powerCheck = false;
 	powerOff.style.color = '#f1948a';
 	powerOff.style.backgroundColor = '#fbeee6';
 	powerOn.style.color = '#1c0880';
@@ -56,6 +58,7 @@ powerOn.addEventListener('click', function(){
 		fadeInOut[k].style.color = 'rgba(28, 8, 128, 1)';
 	}
 
+	powerCheck = true;
 	powerOn.style.color = '#f1948a';
 	powerOn.style.backgroundColor = '#fbeee6';
 	h2.style.opacity = 0;
@@ -129,12 +132,16 @@ function doThisForEveryNumber(){
 	var numbers = document.querySelectorAll('.number');
  	for (let i = 0; i < numbers.length; i++){
  		numbers[i].addEventListener('click', function(){
- 			 	displayTotal.style.display = 'none';
- 				operand.innerHTML = '';
- 				currentNumberSpan.innerHTML += this.innerHTML;
- 				currentNumberSpan.style.visibility = 'visible';
- 				message.innerHTML = '';
- 			});
+ 			if(!powerCheck){
+ 				alert('Please turn the power on, genius.');
+ 			}else {
+			 	displayTotal.style.display = 'none';
+				operand.innerHTML = '';
+				currentNumberSpan.innerHTML += this.innerHTML;
+				currentNumberSpan.style.visibility = 'visible';
+				message.innerHTML = '';
+			};
+ 		});
  	}
 }
 
@@ -143,17 +150,21 @@ function doThisForEveryOperand(){
 
 	for (let j = 0; j < symbols.length; j++){
 		symbols[j].addEventListener('click', function(e){
-			var target = e.target;
+			if (!powerCheck){
+				alert('Please turn the power on, genius.');
+			}else {			
+				var target = e.target;
 
-			displayTotal.style.display = 'none';
-			currentNumber = Number(currentNumberSpan.innerHTML);
-			numbers.push(currentNumber);
-			currentNumberSpan.innerHTML = '';
-			operand.innerHTML = this.innerHTML;
-			message.innerHTML = '';
+				displayTotal.style.display = 'none';
+				currentNumber = Number(currentNumberSpan.innerHTML);
+				numbers.push(currentNumber);
+				currentNumberSpan.innerHTML = '';
+				operand.innerHTML = this.innerHTML;
+				message.innerHTML = '';
 
-			switchCases();
-			lastOperand = target.id;;
+				switchCases();
+				lastOperand = target.id;;
+			};
 		});
 	}
 }
@@ -186,6 +197,7 @@ function switchCases(){
 		} // end switch
 	} // end else
 }
+
 
 doThisForEveryNumber();
 doThisForEveryOperand();

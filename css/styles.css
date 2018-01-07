@@ -39,7 +39,7 @@ body {
 }
 
 .flex:hover {
-	cursor: pointer;
+	cursor pointer;
 	background-color: #fbeee6;
 }
 
