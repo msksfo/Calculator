@@ -21,186 +21,189 @@ var lastOperand;
 
 /* ================== Event Handlers ============================= */
 
-clear.addEventListener('click', function(){
-	message.innerHTML = '';
-	reset();
+clear.addEventListener('click', function() {
+    message.innerHTML = '';
+    reset();
 });
 
-powerOff.addEventListener('click', function(){
-	powerCheck = false;
-	powerOff.style.color = '#f1948a';
-	powerOff.style.backgroundColor = '#fbeee6';
-	powerOn.style.color = '#1c0880';
-	powerOn.style.backgroundColor = '#c9bffb';
-	h2.style.opacity = .2;
-	h2.innerHTML = 'Calculator';
-	message.innerHTML = 'Goodbye';
+powerOff.addEventListener('click', function() {
+    if (!powerCheck) {
+        return;
+    }
 
-	for (let k = 0; k < fadeInOut.length; k++){
-		fadeInOut[k].style.color = 'rgba(28, 8, 128, 0)';
-	}
+    powerCheck = false;
+    powerOff.style.color = '#f1948a';
+    powerOff.style.backgroundColor = '#fbeee6';
+    powerOn.style.color = '#1c0880';
+    powerOn.style.backgroundColor = '#c9bffb';
+    h2.style.opacity = 0.2;
+    h2.innerHTML = 'Calculator';
+    message.innerHTML = 'Goodbye';
 
-	setTimeout(function(){
-		message.innerHTML = '';
-	}, 1000);
+    for (let k = 0; k < fadeInOut.length; k++) {
+        fadeInOut[k].style.color = 'rgba(28, 8, 128, 0)';
+    }
 
-	setTimeout(function(){
-		powerOff.style.color = '#1c0880';
-		powerOff.style.backgroundColor = '#c9bffb';
-	}, 2000);
+    setTimeout(function() {
+        message.innerHTML = '';
+    }, 1000);
 
-	reset();
+    setTimeout(function() {
+        powerOff.style.color = '#1c0880';
+        powerOff.style.backgroundColor = '#c9bffb';
+    }, 2000);
+
+    reset();
 });
 
-powerOn.addEventListener('click', function(){
-	
-	for (let k = 0; k < fadeInOut.length; k++){
-		fadeInOut[k].style.color = 'rgba(28, 8, 128, 1)';
-	}
+powerOn.addEventListener('click', function() {
+    if (powerCheck) {
+        return;
+    }
 
-	powerCheck = true;
-	powerOn.style.color = '#f1948a';
-	powerOn.style.backgroundColor = '#fbeee6';
-	h2.style.opacity = 0;
-	h2.innerHTML = 'I Hate Math';
-	h2.style.opacity = 1;
-	message.innerHTML = 'Hello';
-	message.style.opacity = 1;
-	reset();
+    for (let k = 0; k < fadeInOut.length; k++) {
+        fadeInOut[k].style.color = 'rgba(28, 8, 128, 1)';
+    }
+
+    powerCheck = true;
+    powerOn.style.color = '#f1948a';
+    powerOn.style.backgroundColor = '#fbeee6';
+    h2.style.opacity = 0;
+    h2.innerHTML = 'I Hate Math';
+    h2.style.opacity = 1;
+    message.innerHTML = 'Hello';
+    message.style.opacity = 1;
+    reset();
 });
-	
-equals.addEventListener('click', function(){
-	message.innerHTML = '';
-	operand.innerHTML = '';
-	currentNumber = Number(currentNumberSpan.innerHTML);
-	numbers.push(currentNumber);
-	currentNumberSpan.style.visibility = 'hidden';
 
-	if (numbers.length === 1){
-		runningTotal = Number((numbers[0]).toFixed(2));
-		displayTotal.innerHTML = runningTotal;
-		displayTotal.style.display = 'block';
-		currentNumberSpan.innerHTML = runningTotal;
-		numbers = [];
-	} else {
-		switch (lastOperand){
-			case 'add':
-				runningTotal = Number((numbers[0] + numbers[1]).toFixed(2));
-				displayTotal.innerHTML =  '= ' + runningTotal;
-				displayTotal.style.display = 'block';
-				currentNumberSpan.innerHTML = runningTotal;
-				numbers = [];
-				break;
-			case 'subtract':
-				runningTotal = Number((numbers[0] - numbers[1]).toFixed(2));
-				displayTotal.innerHTML =  '= ' + runningTotal;
-				displayTotal.style.display = 'block';
-				currentNumberSpan.innerHTML = runningTotal;
-				numbers = [];
-				break;
-			case 'multiply':
-				runningTotal = Number((numbers[0] * numbers[1]).toFixed(2));
-				displayTotal.innerHTML =  '= ' + runningTotal;
-				displayTotal.style.display = 'block';
-				currentNumberSpan.innerHTML = runningTotal;
-				numbers = [];
-				break;
-			case 'divide':
-				runningTotal = Number((numbers[0] / numbers[1]).toFixed(2));
-				displayTotal.innerHTML =  '= ' + runningTotal;
-				displayTotal.style.display = 'block';
-				currentNumberSpan.innerHTML = runningTotal;
-				numbers = [];
-				break;
-		} // end switch
-	}
+equals.addEventListener('click', function() {
+    message.innerHTML = '';
+    operand.innerHTML = '';
+    currentNumber = Number(currentNumberSpan.innerHTML);
+    numbers.push(currentNumber);
+    currentNumberSpan.style.visibility = 'hidden';
+
+    if (numbers.length === 1) {
+        runningTotal = Number(numbers[0].toFixed(2));
+        displayTotal.innerHTML = runningTotal;
+        displayTotal.style.display = 'block';
+        currentNumberSpan.innerHTML = runningTotal;
+        numbers = [];
+    } else {
+        switch (lastOperand) {
+            case 'add':
+                runningTotal = Number((numbers[0] + numbers[1]).toFixed(2));
+                displayTotal.innerHTML = '= ' + runningTotal;
+                displayTotal.style.display = 'block';
+                currentNumberSpan.innerHTML = runningTotal;
+                numbers = [];
+                break;
+            case 'subtract':
+                runningTotal = Number((numbers[0] - numbers[1]).toFixed(2));
+                displayTotal.innerHTML = '= ' + runningTotal;
+                displayTotal.style.display = 'block';
+                currentNumberSpan.innerHTML = runningTotal;
+                numbers = [];
+                break;
+            case 'multiply':
+                runningTotal = Number((numbers[0] * numbers[1]).toFixed(2));
+                displayTotal.innerHTML = '= ' + runningTotal;
+                displayTotal.style.display = 'block';
+                currentNumberSpan.innerHTML = runningTotal;
+                numbers = [];
+                break;
+            case 'divide':
+                runningTotal = Number((numbers[0] / numbers[1]).toFixed(2));
+                displayTotal.innerHTML = '= ' + runningTotal;
+                displayTotal.style.display = 'block';
+                currentNumberSpan.innerHTML = runningTotal;
+                numbers = [];
+                break;
+        } // end switch
+    }
 });
 
 /* ==================== Functions ================================== */
 
-function reset(){
-	lastOperand = '';
-	displayTotal.innerHTML = '';
-	displayTotal.style.display = 'none';
-	currentNumber = 0;
-	currentNumberSpan.innerHTML = '';
-	operand.innerHTML = '';
-	numbers = [];
+function reset() {
+    lastOperand = '';
+    displayTotal.innerHTML = '';
+    displayTotal.style.display = 'none';
+    currentNumber = 0;
+    currentNumberSpan.innerHTML = '';
+    operand.innerHTML = '';
+    numbers = [];
 }
 
-function doThisForEveryNumber(){
-	var numbers = document.querySelectorAll('.number');
- 	for (let i = 0; i < numbers.length; i++){
- 		numbers[i].addEventListener('click', function(){
- 			if(!powerCheck){
- 				alert('Please turn the power on, genius.');
- 			}else {
-			 	displayTotal.style.display = 'none';
-				operand.innerHTML = '';
-				currentNumberSpan.innerHTML += this.innerHTML;
-				currentNumberSpan.style.visibility = 'visible';
-				message.innerHTML = '';
-			};
- 		});
- 	}
+function doThisForEveryNumber() {
+    var numbers = document.querySelectorAll('.number');
+    for (let i = 0; i < numbers.length; i++) {
+        numbers[i].addEventListener('click', function() {
+            if (!powerCheck) {
+                alert('Please turn the power on, genius.');
+            } else {
+                displayTotal.style.display = 'none';
+                operand.innerHTML = '';
+                currentNumberSpan.innerHTML += this.innerHTML;
+                currentNumberSpan.style.visibility = 'visible';
+                message.innerHTML = '';
+            }
+        });
+    }
 }
 
-function doThisForEveryOperand(){
-	var symbols = document.querySelectorAll('.compute');
+function doThisForEveryOperand() {
+    var symbols = document.querySelectorAll('.compute');
 
-	for (let j = 0; j < symbols.length; j++){
-		symbols[j].addEventListener('click', function(e){
-			if (!powerCheck){
-				alert('Please turn the power on, genius.');
-			}else {			
-				var target = e.target;
+    for (let j = 0; j < symbols.length; j++) {
+        symbols[j].addEventListener('click', function(e) {
+            if (!powerCheck) {
+                alert('Please turn the power on, genius.');
+            } else {
+                var target = e.target;
 
-				displayTotal.style.display = 'none';
-				currentNumber = Number(currentNumberSpan.innerHTML);
-				numbers.push(currentNumber);
-				currentNumberSpan.innerHTML = '';
-				operand.innerHTML = this.innerHTML;
-				message.innerHTML = '';
+                displayTotal.style.display = 'none';
+                currentNumber = Number(currentNumberSpan.innerHTML);
+                numbers.push(currentNumber);
+                currentNumberSpan.innerHTML = '';
+                operand.innerHTML = this.innerHTML;
+                message.innerHTML = '';
 
-				switchCases();
-				lastOperand = target.id;;
-			};
-		});
-	}
+                switchCases();
+                lastOperand = target.id;
+            }
+        });
+    }
 }
 
-function switchCases(){
-	if (numbers.length === 1){
-		runningTotal = numbers[0];
-	} else {
-		switch (lastOperand){
-			case 'add':
-				runningTotal = Number((numbers[0] + numbers[1]).toFixed(2));
-				numbers[0] = runningTotal;
-				numbers.pop();
-				break;
-			case 'subtract':
-				runningTotal = Number((numbers[0] - numbers[1]).toFixed(2));
-				numbers[0] = runningTotal;
-				numbers.pop();
-				break;
-			case 'multiply':
-				runningTotal = Number((numbers[0] * numbers[1]).toFixed(2));
-				numbers[0] = runningTotal;
-				numbers.pop();
-				break;
-			case 'divide':
-				runningTotal = Number((numbers[0] / numbers[1]).toFixed(2));
-				numbers[0] = runningTotal;
-				numbers.pop();
-				break;
-		} // end switch
-	} // end else
+function switchCases() {
+    if (numbers.length === 1) {
+        runningTotal = numbers[0];
+    } else {
+        switch (lastOperand) {
+            case 'add':
+                runningTotal = Number((numbers[0] + numbers[1]).toFixed(2));
+                numbers[0] = runningTotal;
+                numbers.pop();
+                break;
+            case 'subtract':
+                runningTotal = Number((numbers[0] - numbers[1]).toFixed(2));
+                numbers[0] = runningTotal;
+                numbers.pop();
+                break;
+            case 'multiply':
+                runningTotal = Number((numbers[0] * numbers[1]).toFixed(2));
+                numbers[0] = runningTotal;
+                numbers.pop();
+                break;
+            case 'divide':
+                runningTotal = Number((numbers[0] / numbers[1]).toFixed(2));
+                numbers[0] = runningTotal;
+                numbers.pop();
+                break;
+        } // end switch
+    } // end else
 }
-
 
 doThisForEveryNumber();
 doThisForEveryOperand();
-
-
-
